@@ -10,39 +10,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_17_074434) do
+ActiveRecord::Schema.define(version: 2019_05_15_164600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "authors", force: :cascade do |t|
-    t.string "firstname"
-    t.string "lastname"
-    t.integer "book_id"
+    t.string "fullname"
+    t.text "info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image"
   end
 
   create_table "books", force: :cascade do |t|
     t.string "name"
-    t.integer "author_id"
-    t.integer "publisher_id"
-    t.integer "theme_id"
-    t.date "publishing_date"
     t.integer "pages"
     t.string "cover"
     t.string "isbn"
     t.string "age"
     t.text "description"
     t.float "price"
+    t.integer "author_id"
+    t.integer "publisher_id"
+    t.integer "theme_id"
+    t.string "logo"
+    t.string "images", array: true
+    t.integer "publishing_date"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+  end
+
+  create_table "line_items", force: :cascade do |t|
+    t.integer "cart_id"
+    t.integer "book_id"
+    t.integer "quantity", default: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "publishers", force: :cascade do |t|
     t.string "name"
-    t.integer "book_id"
+    t.text "info"
+    t.string "logo"
   end
 
   create_table "themes", force: :cascade do |t|
     t.string "name"
-    t.integer "book_id"
+    t.text "info"
+    t.string "logo"
   end
 
   create_table "users", force: :cascade do |t|
@@ -54,6 +75,7 @@ ActiveRecord::Schema.define(version: 2019_04_17_074434) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "username"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

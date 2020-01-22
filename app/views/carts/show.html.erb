@@ -1,0 +1,33 @@
+<br>
+<br>
+<div class="container">
+  <h1 class="title is-1" style="color:red">Cart</h1>
+  <section class="section">
+    <%= render(@cart.line_items)%>
+  </section>
+    <div>
+      <h4 class="title is-4">
+        <span>Total:</span><%=number_to_currency(@cart.total_price)%>
+      </h4>
+    </div>
+  
+</div>
+<section class="section">
+<div class="columns align-items-center" style="margin-left: 230px;">
+  <%= form_tag(pay_cart_path(@cart), method: :post) do %>
+    <script
+      src="https://checkout.stripe.com/checkout.js"
+      class="stripe-button"
+      data-key="pk_test_woWImXDzeiEqcIDhpLpjtIv400FBgeeDG0"
+      data-name="BooKShoP"
+      data-description="BooK StorE"
+      data-amount= <%= @cart.total_price * 100 %>
+      data-currency="usd">
+    </script>
+  <% end %>
+  
+</div>
+</section>
+
+
+<%= link_to 'Back', root_path, class: "button is-normal is-rounded is-danger" %>

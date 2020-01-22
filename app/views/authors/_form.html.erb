@@ -3,12 +3,41 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :book_id %>
-  </div>
+  <div class="field">
+          <div class="control">
+          <%= f.input :fullname,
+                      required: true,
+                      wrapper:false,
+                      autofocus: true,
+                      input_html: { class: "input" },
+                      label_html: {class: "label"}%>
+          </div>
+        </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="field">
+          <div class="control">
+          <%= f.input :info,
+                      required: true,
+                      wrapper:false,
+                      input_html: { class: "textarea" },
+                      label_html: {class: "label"}%>
+          </div>
+        </div> 
+
+  <div class="field">
+          <div class="control">
+          <%= f.file_field :image,
+                      required: true,
+                      wrapper:false,
+                      input_html: { class: "file_field" },
+                      label_html: {class: "label"}%>
+          </div>
+        </div>                 
+
+  <div class="field">
+          <div class="control">
+            <%= f.button :submit, "New Author", class: "button is-danger is-medium" %>
+          </div>
+        </div>
   </div>
 <% end %>

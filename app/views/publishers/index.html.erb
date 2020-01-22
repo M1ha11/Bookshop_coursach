@@ -1,27 +1,30 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Publishers</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @publishers.each do |publisher| %>
-      <tr>
-        <td><%= publisher.name %></td>
-        <td><%= link_to 'Show', publisher %></td>
-        <td><%= link_to 'Edit', edit_publisher_path(publisher) %></td>
-        <td><%= link_to 'Destroy', publisher, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
 <br>
+<div class="columns">
+  <div class="column is-2">
+    <%= render 'layouts/left_menu'%>
+  </div>
+  <div class="column">
+    <div class="title">
+      <h1>Publishers</h1>
+    </div>
+    <div>
+      <hr>
+      <br>
+      <ul style="font-size:17px">
+        <% Publisher.all.group_by(&:first).each do |frst, publishers| %>
+          <%= content_tag(:h2, frst)%>
+          <% publishers.each do |publisher|%>
+            <li><%= link_to "#{publisher.name}", publisher_path(publisher)%></li>
+          <% end %>
+          <br>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'New Publisher', new_publisher_path %>
+<% if admin? %>
+  <div class="container" style="margin-left: 100px">
+  <%= link_to 'New Publisher', new_publisher_path, class: "button is-danger is-normal is-rounded" %>
+  </div>
+<% end %>

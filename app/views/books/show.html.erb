@@ -1,54 +1,138 @@
-<p id="notice"><%= notice %></p>
+<br>
+<br>
+<div class="middle">
+  <div class="columns">
+    <div class="column is-4">
+      <div class="b-gallery__scroller ps-container">
+        <div class="b-gallery__contant">
+          
+        </div>
+      </div>
+      <figure class="image is-5by5", style="margin-left: 200px;">
+        <%= link_to image_tag (@book.logo.url), style: "width:350px; heigth:500px;", id: "full_image"%>
+        <div class="modal" id="modal">
+          <div class="modal-background"></div>
+            <div class="modal-content">
+              <p class="image is-4by3">
+                <%= image_tag (@book.logo.url.to_s)%>
+              </p>
+            </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+</div>
+      </figure>
+    </div>
+    <div class="column">
+      <div class="row">
+        <h1 class="title is-3" style="color:black">
+          <%= @book.name%>
+        </h1>
+        <p >
+          <%= link_to "#{@book.author.fullname}", author_path(@book.author)%>, <%= @book.publishing_date%>          
+        </p>
+      </div>
+      <hr>
+      <div class="row">
+        <p style="font-size:30px">
+          <strong><%= number_to_currency(@book.price)%> </strong>
+        </p>
+        <br>
+        <br>
+        <p class="control">
+          <% if user_signed_in?%>
+            <%= button_to 'Add to Cart', line_items_path(book_id: @book), class: "button is-large is-danger", style: "width:30%;"%>
+          <% else %>
+            <%= link_to 'Add to Cart', new_user_session_path, class: "button is-large is-danger", style: "width:30%;"%>
+          <% end %>
+        </p>
+        <br>
+        <hr>
+        <p style="font-size:20px; width:80%">
+          <%= @book.description%>
+        </p>
+      </div>
+    </div>
+  </div>
+  <hr>
 
-<p>
-  <strong>Title:</strong>
-  <%= @book.title %>
-</p>
+  
+    <div class="columns">
+      <div class="column is-8">
+        <table class="table" style="width:70%">
+          <tbody>
+            <% if @book.theme %>
+              <tr>
+                <td class="has-text-weight-bold" style="width:30%">Theme</td>
+                <td><%= link_to "#{@book.theme.name}", theme_path(@book.theme) %></td>
+              </tr>
+            <% end %>
+            <% if @book.theme %>
+              <tr>
+                <td class="has-text-weight-bold" style="width:30%">Publisher</td>
+                <td><%= link_to "#{@book.publisher.name}", publisher_path(@book.publisher) %></td>
+              </tr>
+            <% end %>
+            <% if @book.theme %>
+              <tr>
+                <td class="has-text-weight-bold" style="width:30%">Publsihing Date</td>
+                <td><%= @book.publishing_date%></td>
+              </tr>
+            <% end %>
+            <% if @book.theme %>
+              <tr>
+                <td class="has-text-weight-bold" style="width:30%">Pages</td>
+                <td><%= @book.pages%></td>
+              </tr>
+            <% end %>
+            <% if @book.theme %>
+              <tr>
+                <td class="has-text-weight-bold" style="width:30%">Cover</td>
+                <td><%= @book.cover%></td>
+              </tr>
+            <% end %>
+            <% if @book.theme %>
+              <tr>
+                <td class="has-text-weight-bold" style="width:30%">ISBN</td>
+                <td><%= @book.isbn%></td>
+              </tr>
+            <% end %>
+            <% if @book.theme %>
+              <tr>
+                <td class="has-text-weight-bold" style="width:30%">Age</td>
+                <td><%= @book.age%></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="column">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-128x128">
+              <% if @book.author.image.blank? %>
+              <% else %>
+              <%= image_tag @book.author.image.url.to_s, style: "width:128px; height:128px;"%>
+              <% end %>
+            </figure>
+          </div>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <%= link_to "#{@book.author.fullname}", author_path(@book.author)%>
+              </p>
+              <p>Author</p>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+  
+</div>
 
-<p>
-  <strong>Price:</strong>
-  <%= @book.price %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @book.description %>
-</p>
-
-<p>
-  <strong>Theme:</strong>
-  <%= @book.theme %>
-</p>
-
-<p>
-  <strong>Publisher:</strong>
-  <%= @book.publisher %>
-</p>
-
-<p>
-  <strong>Date published:</strong>
-  <%= @book.date_published %>
-</p>
-
-<p>
-  <strong>Pages:</strong>
-  <%= @book.pages %>
-</p>
-
-<p>
-  <strong>Cover:</strong>
-  <%= @book.cover %>
-</p>
-
-<p>
-  <strong>Isbn:</strong>
-  <%= @book.isbn %>
-</p>
-
-<p>
-  <strong>Age:</strong>
-  <%= @book.age %>
-</p>
-
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+<% if admin? %>
+  <div class="container" style="margin-left:90%">
+    <%= link_to 'Edit', edit_book_path(@book), class: "button is-danger is-normal is-rounded" %> |
+    <%= link_to 'Back', books_path , class: "button is-danger is-normal is-rounded"%>
+  </div>
+<% end %>

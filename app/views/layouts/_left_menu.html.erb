@@ -1,0 +1,33 @@
+
+  <br>
+  <div class="column">
+  <div class="container">
+    <strong><%= link_to 'Authors', authors_path %></strong>
+    <ul>
+      <% Author.all.limit(5).order("RANDOM()").each do |author|%>
+        <li><%= link_to "#{author.fullname}", author_path(author.id) %></li>
+      <% end %>
+    </ul>
+  </div>  
+   <br>
+  <hr>
+  <div class="container">
+    <strong><%= link_to 'Publishers', publishers_path %></strong>
+    <ul>
+      <% Publisher.all.limit(5).order("RANDOM()").each do |publisher|%>
+        <li><%= link_to "#{publisher.name}", publisher_path(publisher.id) %></li>
+      <% end %>
+    </ul>  
+  </div>
+  <br>
+  <hr>
+  <div class="container">
+    <strong><%= link_to 'Themes', themes_path %></strong>
+    <ul>
+      <% Theme.all.limit(5).order("RANDOM()").each do |theme|%>
+        <li><%= link_to "#{theme.name}", theme_path(theme.id) %></li>
+      <% end %>
+    </ul>  
+  </div>
+
+  </div>

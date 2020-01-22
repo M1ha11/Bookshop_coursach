@@ -1,0 +1,14 @@
+<div class="book">
+  <div class="card" style="width: 16rem; height:21rem; margin-left: 7px;">
+    <span class="item-type-card__figure-item">
+      <%= link_to image_tag(book.logo.url.to_s), book_path(book), style:"width:128px; heigth:128px; margin-left: 10px; margin-top: 12px;"%>
+    </span>
+    <div class="card-body" style="margin-left: 10px;">
+      <p class="card-title" ><%= link_to "#{book.name}", book_path(book)%></p>
+      <p>
+        <%= book.author.fullname%>, <%= book.publishing_date%>
+      </p>
+      <p><%= number_to_currency(book.price)%></p>
+    </div>
+  </div>
+</div>

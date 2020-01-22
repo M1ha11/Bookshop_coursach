@@ -1,22 +1,160 @@
-
 <%= simple_form_for(@book) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-  <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :price %>
-    <%= f.input :description %>
-    <%= f.input :theme %>
-    <%= f.input :publisher %>
-    <%= f.input :date_published %>
-    <%= f.input :pages %>
-    <%= f.input :cover %>
-    <%= f.input :isbn %>
-    <%= f.input :age %>
+  
+  <div class="field", wigth="2000%">
+    <div class="control">
+      <%= f.input :name,
+                  required: true,
+                  wrapper:false,
+                  autofocus: true,
+                  input_html: { class: "input" },
+                  label_html: {class: "label"}%>
+    </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="field">
+    <div class="control">
+      <%= f.input :price,
+                  required: true,
+                  wrapper:false,
+                  autofocus: true,
+                  input_html: { class: "input" },
+                  label_html: {class: "label"}%>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <%= f.label :Author, class: "label"%>
+      <%= f.select(:author_id, Author.all.collect {|a| [a.fullname, a.id]}, {:include_blank => ""},
+        required: true,
+        wrapper: false,
+        autofocus: true,
+        class: 'input')%>
+      
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <%= f.label :Theme, class: "label"%>
+      <%= f.select(:theme_id, Theme.all.collect {|t| [t.name, t.id]}, {:include_blank => ""},
+        required: true,
+        wrapper: false,
+        autofocus: true,
+        class: 'input')%>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+     <%= f.label :Publisher, class: "label"%>
+      <%= f.select(:publisher_id, Publisher.all.collect {|pub| [pub.name, pub.id]}, {:include_blank => ""},
+        required: true,
+        wrapper: false,
+        autofocus: true,
+        class: 'input')%>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <%= f.input :pages,
+                  required: true,
+                  wrapper:false,
+                  autofocus: true,
+                  input_html: { class: "input" },
+                  label_html: {class: "label"}%>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <%= f.input :cover,
+                  required: true,
+                  wrapper:false,
+                  autofocus: true,
+                  input_html: { class: "input" },
+                 label_html: {class: "label"}%>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <%= f.input :isbn,
+                  required: true,
+                  wrapper:false,
+                  autofocus: true,
+                  input_html: { class: "input" },
+                  label_html: {class: "label"}%>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <%= f.input :age,
+                  required: true,
+                  wrapper:false,
+                  autofocus: true,
+                  input_html: { class: "input" },
+                  label_html: {class: "label"}%>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <%= f.input :publishing_date,
+                  required: true,
+                  wrapper:false,
+                  autofocus: true,
+                  input_html: { class: "input" },
+                  label_html: {class: "label"}%>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <%= f.input :description,
+                  required: true,
+                  wrapper:false,
+                  autofocus: true,
+                  input_html: { class: "textarea" },
+                  label_html: {class: "label"}%>
+    </div>
+  </div>
+
+  <div class="field">
+          <div class="control">
+            <label class="label">Add Image</label>
+            <div class="file">
+              <label class="file-label">
+                <%= f.file_field :logo,
+                      required: true,
+                      wrapper:false,
+                      input_html: { class: "file-input instrument-image" } %>
+              </label>
+            </div>
+          
+          </div>
+        </div>         
+
+  <div class="field">
+          <div class="control">
+          <%= f.file_field :images,
+                      multiple: true,
+                      required: true,
+                      wrapper:false,
+                      input_html: { class: "file_field" },
+                      label_html: {class: "label"}%>
+          </div>
+        </div>               
+
+  <div class="field">
+          <div class="control">
+            <%= f.button :submit, "Create Book", class: "button is-danger is-medium" %>
+          </div>
+        </div>
   </div>
 <% end %>
+

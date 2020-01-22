@@ -1,9 +1,51 @@
-<p id="notice"><%= notice %></p>
+<br>
+<div class="media">
+  <div class="column is-3">
+    <div class="container", style="margin-left: 20px;">
+      <figure class="image is-240x240">
+        <% if @publisher.logo.blank?%>
+          <img src="https://bulma.io/images/placeholders/240x240.png">
+        <% else %>
+        <%= image_tag @publisher.logo.url.to_s, style: "width:240px; heigth:240px;" %>
+        <% end %>
+      </figure>
+    </div>
+  </div>
+  <div class="column is-4">
+    <div class="media-content">
+      <p>
+        <h1 style="font-size:30px"><strong><%= @publisher.name%></strong></h1>
+      </p>
+      <br>
+      <p style="font-size:17px">
+        <%= @publisher.info%>
+      </p>  
+    </div>
+  </div>
+</div>
+<br>
+<hr>
+<br>
+<div class="columns">
+  <div class="column is-2">
+    <%= render 'layouts/left_menu'%>
+  </div>
+   <div class="container">
+    <div class="row">
+      <div class="columns is-gapless is-multiline is-mobile">
+        
+          <% @publisher.books.each do |book|%>
+            <%= render book%>
+          <% end %>
+        
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @publisher.name %>
-</p>
-
-<%= link_to 'Edit', edit_publisher_path(@publisher) %> |
-<%= link_to 'Back', publishers_path %>
+<% if admin? %>
+  <div class="container" style="margin-left: 90%">
+    <%= link_to 'Edit', edit_publisher_path(@publisher), class: "button is-danger is-normal is-rounded" %> 
+    <%= link_to 'Back', publishers_path, class: "button is-danger is-normal is-rounded" %>
+  </div>
+<% end %>

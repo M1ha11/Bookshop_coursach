@@ -1,0 +1,27 @@
+<div class="columns align-items-center">
+  <div class="column is-2">
+    <figure class="is-128x128 image">
+      <%=link_to image_tag(line_item.book.logo.url.to_s), book_path(line_item.book), style: "width:128px; heigth:128px;" %>
+    </figure>
+  </div>
+
+  <div class="column is-2">
+    <%= link_to line_item.book.name, book_path(line_item.book) %>
+  </div>
+
+  <div class="column is-1 has-text-right">
+    <%= line_item.quantity %>
+  </div>
+
+  <div class="column is-3 has-text-right">
+    <strong class="f4"><%= number_to_currency(line_item.total_price) %></strong>
+  </div>
+  
+  
+</div>
+
+<div class="has-text-right">
+  <%= link_to 'Remove Item', line_item, method: :delete, data: { confirm: "Are you sure? " }, class: "button is-small is-danger" %>
+</div>
+
+<hr/ >

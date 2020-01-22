@@ -1,6 +1,16 @@
-<h1>Editing Book</h1>
+<div class="section">
+  <div class="container">
+    <div class="columns is-left">
+      <div class="column is-4">
+        <h2 class="title is-2">Editing Book</h2>
+      </div>
 
-<%= render 'form', book: @book %>
+      <%= render 'form', book: @book %>
+      
+      <%= link_to 'Back', books_path, class: "button is-danger is-normal is-rounded" %>
+      <%= link_to 'Show', @book, class: "button is-danger is-normal is-rounded" %>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'Show', @book %> |
-<%= link_to 'Back', books_path %>
+

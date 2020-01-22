@@ -1,0 +1,89 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *= require_tree .
+ *= require_self
+
+ */
+
+@import "bulma";
+
+$content-size: 1140px;
+.content{
+  display: inline-block;
+}
+
+.title {
+	color: $red;
+}
+
+.input {
+
+}
+
+.button {
+	
+}
+
+body{
+	width:100%;
+	clear: both;
+	margin: 0;
+	
+
+.page-container{
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  display: block;
+}
+
+.content-wrap {
+  
+  padding-bottom: 2rem;
+  }
+
+.footer {
+  width:100%;
+  margin-top: 20px;
+  padding: 10px;
+  background: #333;
+  color: $black ;
+  height: 50px;
+  text-align: center;
+  position: relative;
+  clear: both;
+  }
+}
+
+
+
+
+
+hr.vertical{
+  width: 1px;
+  height: 100%;
+}
+
+.item-type-card__figure-item{
+
+  img{
+    height: 250px;
+    weight: 160px;
+  }
+  max-height: 200px;
+  max-width: 200px;
+  vertical-align: top;
+  visibility: visible;
+  margin-top: 5px;
+}
+
+.f4 { font-size: 1.25rem; }

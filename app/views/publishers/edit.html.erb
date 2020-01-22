@@ -1,6 +1,12 @@
-<h1>Editing Publisher</h1>
+<div class="section">
+  <div class="container">
+    <div class="column is-centered">
+      <div class="column is-4">
+        <h2 class="title is-2">Editing Publisher</h2>
 
-<%= render 'form', publisher: @publisher %>
-
-<%= link_to 'Show', @publisher %> |
-<%= link_to 'Back', publishers_path %>
+        <%= render 'form', publisher: @publisher %>
+        <%= link_to 'Back', publishers_path, class: "button is-danger is-normal is-rounded" %>
+      </div>
+    </div>
+  </div>
+</div>

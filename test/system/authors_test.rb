@@ -14,8 +14,8 @@ class AuthorsTest < ApplicationSystemTestCase
     visit authors_url
     click_on "New Author"
 
-    fill_in "Book", with: @author.book_id
-    fill_in "Name", with: @author.name
+    fill_in "Fullname", with: @author.fullname
+    fill_in "Info", with: @author.info
     click_on "Create Author"
 
     assert_text "Author was successfully created"
@@ -26,8 +26,8 @@ class AuthorsTest < ApplicationSystemTestCase
     visit authors_url
     click_on "Edit", match: :first
 
-    fill_in "Book", with: @author.book_id
-    fill_in "Name", with: @author.name
+    fill_in "Fullname", with: @author.fullname
+    fill_in "Info", with: @author.info
     click_on "Update Author"
 
     assert_text "Author was successfully updated"
